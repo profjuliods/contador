@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Tempo Juntos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #fff;
+        }
+        header {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 20px 0;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            border-bottom: 4px solid #fff;
+        }
+        .counter {
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #ff4d4d;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .heart {
+            color: #ff4d4d;
+            font-size: 3rem;
+            animation: pulse 1.5s infinite;
+        }
+        .photos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding: 10px;
+        }
+        .photo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 5px solid #ff4d4d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Efeito de aumento da foto ao passar o mouse */
+        .photo:hover {
+            transform: scale(1.2); /* Aumenta a foto 20% */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra mais forte */
+        }
+
+        /* Estilo responsivo para telas menores */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.5rem; /* Diminui o tamanho da fonte no header */
+            }
+
+            .photos {
+                justify-content: center;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .counter {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Estilo para telas muito pequenas (como celulares em modo retrato) */
+        @media (max-width: 480px) {
+            .photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .counter {
+                font-size: 1.2rem;
+            }
+
+            header {
+                font-size: 1.2rem; /* Tamanho menor do header */
+            }
+        }
+
+        /* Animação de pulsar o coração */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nosso Tempo Juntos <span class="heart">❤️</span></h1>
+    </header>
+    
+    <div class="container">
+        <div class="counter" id="time-counter">
+            Contador de Tempo: 00 Dias, 00 Horas, 00 Minutos, 00 Segundos
+        </div>
+
+        <div class="photos">
+            <img src="foto1.jpg" alt="Foto 1" class="photo">
+            <img src="foto2.jpg" alt="Foto 2" class="photo">
+            <img src="foto3.jpg" alt="Foto 3" class="photo">
+            <!-- Adicione mais imagens conforme necessário -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Feito com ❤️ por vocês!</p>
+    </footer>
+
+    <script>
+        // Definir a data de início (29 de janeiro de 2012)
+        const startDate = new Date("2012-01-29T00:00:00");
+
+        function updateCounter() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("time-counter").innerHTML = `Contador de Tempo: ${days} Dias, ${hours} Horas, ${minutes} Minutos, ${seconds} Segundos`;
+        }
+
+        // Atualiza o contador a cada segundo
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
